@@ -426,18 +426,16 @@ export function Chat() {
           }}
         >
           <div className="flex flex-row items-center justify-between pb-1 pl-0.5 pr-2">
-              {history.length === 0 && lastSessionId && !isInEdit && (
-              <div className="xs:flex hidden">
-                <NewSessionButton
-                  onClick={async () => {
-                    await dispatch(loadLastSession());
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <ArrowLeftIcon className="h-3 w-3" />
-                  <span className="text-xs">Last Session</span>
-                </NewSessionButton>
-            </div>
+            {history.length === 0 && lastSessionId && !isInEdit && (
+              <NewSessionButton
+                onClick={async () => {
+                  await dispatch(loadLastSession());
+                }}
+                className="xs:flex hidden items-center gap-2"
+              >
+                <ArrowLeftIcon className="h-3 w-3" />
+                <span className="text-xs">Last Session</span>
+              </NewSessionButton>
             )}
           </div>
           <FatalErrorIndicator />
