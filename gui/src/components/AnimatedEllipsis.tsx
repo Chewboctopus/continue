@@ -1,24 +1,27 @@
-import styled, { keyframes } from "styled-components";
+import React, { useEffect, useState } from "react";
 
-const ellipsisAnimation = keyframes`
-  0% { width: 0; }
-  33% { width: 0.33em; }
-  66% { width: 0.66em; }
-  100% { width: 1em; }
-`;
+export const AnimatedEllipsis = () => {
+  const [dots, setDots] = useState("");
 
-export const AnimatedEllipsis = styled.span`
-  display: inline-block;
-  width: 1em; /* Fixed width to match the maximum animation width */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
+    }, 400);
+    return () => clearInterval(interval);
+  }, []);
 
-  &::after {
-    content: "...";
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
-    animation: ${ellipsisAnimation} 2s infinite;
-    width: 0;
-  }
-`;
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        width: "1.2em",
+        textAlign: "left",
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      {dots}
+    </span>
+  );
+};
 
 export default AnimatedEllipsis;
