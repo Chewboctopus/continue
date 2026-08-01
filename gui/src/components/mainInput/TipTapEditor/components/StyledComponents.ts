@@ -13,6 +13,11 @@ import { getFontSize } from "../../../../util";
 export const InputBoxDiv = styled.div<{}>`
   resize: none;
   font-family: inherit;
+  /* Allow the editor to shrink with the pane and break long spaceless strings
+     instead of forcing the whole layout wider than the column. */
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   border-radius: 0.5rem;
   padding-bottom: 1px;
   margin: 0;

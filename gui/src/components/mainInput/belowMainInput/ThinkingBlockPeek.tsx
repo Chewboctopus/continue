@@ -15,11 +15,6 @@ const MarkdownWrapper = styled.div`
   }
 `;
 
-const FixedWidthSpan = styled.span`
-  display: inline-block;
-  width: 1.5em; /* Fixed width for the animated ellipsis */
-`;
-
 interface ThinkingBlockPeekProps {
   content: string;
   redactedThinking?: string;
@@ -75,9 +70,7 @@ function ThinkingBlockPeek({
             {inProgress ? (
               <span>
                 {redactedThinking ? "Redacted Thinking" : "Thinking"}
-                <FixedWidthSpan>
-                  <AnimatedEllipsis />
-                </FixedWidthSpan>
+                <AnimatedEllipsis />
               </span>
             ) : redactedThinking ? (
               "Redacted Thinking"

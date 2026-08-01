@@ -66,8 +66,11 @@ const StyledMarkdown = styled.div<{
     background-color: ${vscEditorBackground};
     border-radius: ${defaultBorderRadius};
 
-    max-width: calc(100vw - 24px);
-    overflow-x: scroll;
+    /* Confine code blocks to the message column, not the whole webview.
+       Using 100vw here let wide blocks blow the flex column past the
+       visible pane and clip every line of the UI. */
+    max-width: 100%;
+    overflow-x: auto;
     overflow-y: hidden;
 
     padding: 8px;
@@ -126,6 +129,11 @@ const StyledMarkdown = styled.div<{
   padding-left: 8px;
   padding-right: 8px;
   color: ${vscForeground};
+
+  /* Allow this container to shrink below its content's intrinsic width so a
+     long token/code block can't force the whole column wider than the pane. */
+  min-width: 0;
+  max-width: 100%;
 
   p,
   li,
